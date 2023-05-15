@@ -25,7 +25,7 @@
 SX1276 radio = new Module(LORA_CS, LORA_DIO0, LORA_RST, LORA_BUSY);
 // put function declarations here:
 
-Adafruit_SSD1306 display(128, 32, &Wire, OLED_RST);
+Adafruit_SSD1306 display(128, 64, &Wire, OLED_RST);
 
 void initializeDisplay()
 {
@@ -58,10 +58,10 @@ void initLoRa()
   SPI.begin(LORA_SCK, LORA_MISO, LORA_MOSI, LORA_CS);
 
   int state = radio.begin();
+  radio.setFrequency(915);
   if (state == RADIOLIB_ERR_NONE)
   {
     Serial.println(F("EXITO!"));
-    display.println("LORA :)");
   }
   else
   {
@@ -72,7 +72,7 @@ void initLoRa()
       ;
   }
 }
-
+// int counter = 0;
 void holamundolora()
 {
   Serial.print(F("NODO 1 - TRANSMITIENDO PACKETE ... "));
@@ -80,8 +80,14 @@ void holamundolora()
   int state = radio.transmit("Feliz dia mama");
   if (state == RADIOLIB_ERR_NONE)
   {
+    // counter++;
     // Si el paquete se transmitio correctamente
-    display.print("Paquete enviado!!");
+    // display.clearDisplay();
+    // display.print("Paquete enviado!!");
+    // display.print(counter);
+    // display.display();
+
+    // display.clearDisplay();
 
     Serial.print(F("NODO 1 - Datarate:\t"));
     Serial.print(radio.getDataRate());
