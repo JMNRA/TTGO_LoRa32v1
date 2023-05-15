@@ -77,7 +77,7 @@ void holamundolora()
 {
   Serial.print(F("NODO 1 - TRANSMITIENDO PACKETE ... "));
 
-  int state = radio.transmit("Feliz dia mama");
+  int state = radio.transmit("Te amo oso");
   if (state == RADIOLIB_ERR_NONE)
   {
     // counter++;
