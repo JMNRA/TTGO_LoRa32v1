@@ -59,6 +59,7 @@ void initLoRa()
 
   int state = radio.begin();
   radio.setFrequency(915);
+  radio.setSpreadingFactor(12);
   if (state == RADIOLIB_ERR_NONE)
   {
     Serial.println(F("EXITO!"));
